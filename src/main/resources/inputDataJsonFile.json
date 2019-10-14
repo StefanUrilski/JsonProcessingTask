@@ -1,0 +1,22 @@
+[
+  {
+    "stationName":"TestSSID",
+    "power":-10
+  },
+  {
+    "stationName":"Zettahost",
+    "power":-15
+  },
+  {
+    "stationName":"TestSSID",
+    "power":-1
+  },
+  {
+    "stationName":"Zettahost",
+    "power":-5
+  }
+  {
+    "stationName":"Zettahost",
+    "power":-50
+  }
+]
