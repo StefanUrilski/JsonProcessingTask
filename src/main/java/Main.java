@@ -43,11 +43,7 @@ public class Main {
         List<StationExportDto> stationsExport = new ArrayList<>();
         for (String stationName : allStations.keySet()) {
 
-            double average = allStations.get(stationName)
-                    .stream()
-                    .mapToDouble(x -> x)
-                    .average()
-                    .orElse(0.0);
+            double average = getAverage(allStations.get(stationName));
 
             StationExportDto dto = new StationExportDto(stationName, average);
 
@@ -62,5 +58,13 @@ public class Main {
             // Log print status... or something.
             e.printStackTrace();
         }
+    }
+
+    public static double getAverage(List<Double> allStations) {
+        return allStations
+                .stream()
+                .mapToDouble(x -> x)
+                .average()
+                .orElse(0.0);
     }
 }
