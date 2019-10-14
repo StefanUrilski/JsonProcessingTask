@@ -15,5 +15,6 @@ public class FileWriterImpl implements FileWriter {
             writer.write(dataLine);
         }
 
+        writer.close();
     }
 }

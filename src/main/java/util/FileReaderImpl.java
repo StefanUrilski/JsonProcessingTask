@@ -16,7 +16,6 @@ public class FileReaderImpl implements FileReader {
             allLines = Files.readAllLines(Path.of(filePath));
         } catch (IOException e) {
             // or something else
-            e.printStackTrace();
             throw new IOException("Oops, something goes wrong... ");
         }
 

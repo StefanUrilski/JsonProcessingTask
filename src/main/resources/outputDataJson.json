@@ -1,0 +1,10 @@
+[
+  {
+    "stationName": "TestSSID",
+    "averagePower": -5.5
+  },
+  {
+    "stationName": "Zettahost",
+    "averagePower": -23.333333333333332
+  }
+]
