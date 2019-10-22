@@ -11,7 +11,7 @@ public class ConsoleReaderImpl implements ConsoleReader {
 
 
     @Override
-    public String readLine(String filePath) {
+    public String readLine() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
