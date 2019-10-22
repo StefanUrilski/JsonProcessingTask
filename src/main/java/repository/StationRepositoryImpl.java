@@ -51,4 +51,9 @@ public class StationRepositoryImpl implements StationRepository {
 
         return gson.toJson(stationsAverage);
     }
+
+    @Override
+    public Map<String, List<Station>> getData() {
+        return data;
+    }
 }
