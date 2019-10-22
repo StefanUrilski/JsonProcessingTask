@@ -10,7 +10,7 @@ public class FileReaderImpl implements FileReader {
 
     @Override
     public String readFile(String fileName) throws IOException {
-        fileName = String.format("%s\\src\\main\\resources\\%s", System.getProperty("user.dir"), fileName);
+        String filePath = String.format("%s\\src\\main\\resources\\%s", System.getProperty("user.dir"), fileName);
 
         List<String> allLines;
         try {

@@ -5,7 +5,8 @@ import java.io.IOException;
 public class FileWriterImpl implements FileWriter {
 
     @Override
-    public void write(String filePath, String text) throws IOException {
+    public void write(String fileName, String text) throws IOException {
+        String filePath = String.format("%s\\src\\main\\resources\\%s", System.getProperty("user.dir"), fileName);
 
         java.io.FileWriter writer = new java.io.FileWriter(filePath);
 
