@@ -3,14 +3,14 @@ package entity;
 public class Station {
 
     private String name;
-    private double averagePower;
+    private double power;
 
     public Station() {
     }
 
-    public Station(String name, double averagePower) {
+    public Station(String name, double power) {
         this.name = name;
-        this.averagePower = averagePower;
+        this.power = power;
     }
 
     public String getName() {
@@ -21,11 +21,11 @@ public class Station {
         this.name = name;
     }
 
-    public double getAveragePower() {
-        return averagePower;
+    public double getPower() {
+        return power;
     }
 
-    public void setAveragePower(double averagePower) {
-        this.averagePower = averagePower;
+    public void setPower(double power) {
+        this.power = power;
     }
 }

@@ -38,7 +38,7 @@ public class StationRepositoryImpl implements StationRepository {
 
         data.forEach((key, value) -> {
             double average = value.stream()
-                    .mapToDouble(Station::getAveragePower)
+                    .mapToDouble(Station::getPower)
                     .average()
                     .orElse(0.0);
 
