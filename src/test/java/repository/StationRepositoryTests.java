@@ -32,12 +32,14 @@ public class StationRepositoryTests {
     @Test
     public void addStationsFromJson_CorrectStringJson_ShouldAddSameStation() {
         String stationName = "Zettahost";
+        // power from json string
+        double power = -23.3;
         stationRepository.addStationsFromJson(STRING_JSON_SINGLE_OBJECT);
 
         Station station = stationRepository.getData().get(stationName).get(0);
 
         assertEquals(stationName, station.getName());
-        assertEquals(-23.3, station.getPower(), 0.1);
+        assertEquals(power, station.getPower(), 0.1);
     }
 
     @Test(expected = UnsupportedOperationException.class)
