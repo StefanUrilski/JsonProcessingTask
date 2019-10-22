@@ -23,7 +23,7 @@ public class CommandParserImpl implements CommandParser {
         String[] tokens = command.split("\\s+");
 
         String cmd = tokens[0].replaceAll("-", "");
-        String fileName = tokens[1];
+        String fileName = tokens.length == 2 ? tokens[1] : "";
         String executionResult;
 
         switch (cmd) {

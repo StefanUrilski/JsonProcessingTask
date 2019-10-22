@@ -13,16 +13,14 @@ import static org.junit.Assert.*;
 public class CommandParserTests {
 
     private FileReader fileReader;
-    private FileWriter fileWriter;
     private StationRepository stationRepository;
     private CommandParser commandParser;
 
     @Before
     public void init() {
         fileReader = new FileReaderImpl();
-        fileWriter = new FileWriterImpl();
         stationRepository = new StationRepositoryImpl(GsonProvider.getGson());
-        commandParser = new CommandParserImpl(fileReader, fileWriter, stationRepository);
+        commandParser = new CommandParserImpl(fileReader, new FileWriterImpl(), stationRepository);
     }
 
     @Test
@@ -69,5 +67,25 @@ public class CommandParserTests {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void execute_OutputWithoutEntities_ShouldReturnProperMessage() throws IOException {
+        String expected = commandParser.execute("--output output.json");
 
+        assertEquals(expected, NO_ENTRIES_EXCEPTION_MESSAGE);
+    }
+
+    @Test
+    public void execute_OutputWithEntities_ShouldReturnProperMessage() throws IOException {
+        commandParser.execute("--input input.json");
+        String expected = commandParser.execute("--output output.json");
+
+        assertEquals(expected, SUCCESS_MESSAGE);
+    }
+
+    @Test
+    public void execute_WithRandomText_ShouldReturnProperMessage() throws IOException {
+        String expected = commandParser.execute("RandomText");
+
+        assertEquals(expected, INVALID_COMMAND_MESSAGE);
+    }
 }
