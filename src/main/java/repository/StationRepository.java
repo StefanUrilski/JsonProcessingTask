@@ -2,7 +2,7 @@ package repository;
 
 public interface StationRepository {
 
-    String addStationsFromJson(String stationsJson);
+    int addStationsFromJson(String stationsJson);
 
     String getAveragePower();
 

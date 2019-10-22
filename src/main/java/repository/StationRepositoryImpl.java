@@ -19,7 +19,7 @@ public class StationRepositoryImpl implements StationRepository {
     }
 
     @Override
-    public String addStationsFromJson(String stationsJson) {
+    public int addStationsFromJson(String stationsJson) {
         StationImportDto[] stations = gson.fromJson(stationsJson, StationImportDto[].class);
 
         Arrays.stream(stations)
@@ -29,7 +29,7 @@ public class StationRepositoryImpl implements StationRepository {
                     data.get(station.getStationName()).add(currentStation);
                 });
 
-        return String.format("%d stations, successfully added.", stations.length);
+        return stations.length;
     }
 
     @Override

@@ -4,6 +4,8 @@ import repository.StationRepository;
 
 import java.io.IOException;
 
+import static common.Constants.*;
+
 public class CommandParserImpl implements CommandParser {
 
     private FileReader fileReader;
@@ -26,13 +28,14 @@ public class CommandParserImpl implements CommandParser {
 
         switch (cmd) {
             case "input":
-                String fileContent = "";
+                String fileContent;
                 try {
                     fileContent = fileReader.readFile(fileName);
-                    executionResult = stationRepository.addStationsFromJson(fileContent);
+                    int addedStations = stationRepository.addStationsFromJson(fileContent);
+                    executionResult = String.format(NUMBER_STATIONS_ADDED, addedStations);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    executionResult = "Error. Something goes wrong.";
+                    executionResult = ERROR_MESSAGE;
                 }
                 break;
             case "output":
@@ -40,14 +43,14 @@ public class CommandParserImpl implements CommandParser {
 
                 try {
                     fileWriter.write(fileName, jsonOutput);
-                    executionResult = "Successfully saved to file.";
+                    executionResult = SUCCESS_MESSAGE;
                 } catch (IOException e) {
                     e.printStackTrace();
-                    executionResult = "Error. Something goes wrong.";
+                    executionResult = ERROR_MESSAGE;
                 }
                 break;
             default:
-                executionResult = "Not a valid command! Please try again.";
+                executionResult = INVALID_COMMAND_MESSAGE;
                 break;
         }
 
