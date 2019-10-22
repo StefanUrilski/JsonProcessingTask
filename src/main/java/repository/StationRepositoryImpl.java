@@ -33,7 +33,7 @@ public class StationRepositoryImpl implements StationRepository {
     }
 
     @Override
-    public List<StationExportDto> getAveragePower() {
+    public String getAveragePower() {
         List<StationExportDto> stationsAverage = new ArrayList<>();
 
         data.forEach((key, value) -> {
@@ -47,6 +47,6 @@ public class StationRepositoryImpl implements StationRepository {
             stationsAverage.add(stationDto);
         });
 
-        return stationsAverage;
+        return gson.toJson(stationsAverage);
     }
 }
