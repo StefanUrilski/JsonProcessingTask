@@ -5,6 +5,7 @@ import util.*;
 public class Engine implements Runnable {
 
     private static final String COMMAND_END = "END";
+    private static final String CHOOSE_OPTION = String.format("Choose Option:%n --input {filename}%n --output {filename}%n END");
 
     private ConsoleReader consoleReader;
     private ConsoleWriter consoleWriter;
@@ -25,6 +26,7 @@ public class Engine implements Runnable {
     @Override
     public void run() {
         while (true) {
+            consoleWriter.writeLine(CHOOSE_OPTION);
             String inputLine = consoleReader.readLine();
 
             if (inputLine.equals(Engine.COMMAND_END)) {

@@ -29,11 +29,11 @@ public class CommandParserImpl implements CommandParser {
                 String fileContent = "";
                 try {
                     fileContent = fileReader.readFile(fileName);
+                    executionResult = stationRepository.addStationsFromJson(fileContent);
                 } catch (IOException e) {
                     e.printStackTrace();
+                    executionResult = "Error. Something goes wrong.";
                 }
-
-                executionResult = stationRepository.addStationsFromJson(fileContent);
                 break;
             case "output":
                 String jsonOutput = stationRepository.getAveragePower();
