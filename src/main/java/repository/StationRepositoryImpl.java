@@ -36,6 +36,8 @@ public class StationRepositoryImpl implements StationRepository {
     public String getAveragePower() {
         List<StationExportDto> stationsAverage = new ArrayList<>();
 
+        if (data.isEmpty()) throw new UnsupportedOperationException();
+
         data.forEach((key, value) -> {
             double average = value.stream()
                     .mapToDouble(Station::getPower)

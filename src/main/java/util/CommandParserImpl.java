@@ -39,7 +39,14 @@ public class CommandParserImpl implements CommandParser {
                 }
                 break;
             case "output":
-                String jsonOutput = stationRepository.getAveragePower();
+                String jsonOutput;
+
+                try {
+                    jsonOutput = stationRepository.getAveragePower();
+                } catch (UnsupportedOperationException ex) {
+                    executionResult = NO_ENTRIES_EXCEPTION_MESSAGE;
+                    break;
+                }
 
                 try {
                     fileWriter.write(fileName, jsonOutput);
