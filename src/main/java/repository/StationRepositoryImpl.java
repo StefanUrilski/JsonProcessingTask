@@ -1,6 +1,8 @@
 package repository;
 
 import com.google.gson.Gson;
+import dto.StationExportDto;
+import dto.StationImportDto;
 import entity.Station;
 
 import java.util.*;
@@ -18,20 +20,33 @@ public class StationRepositoryImpl implements StationRepository {
 
     @Override
     public String addStationsFromJson(String stationsJson) {
-        Station[] stations = gson.fromJson(stationsJson, Station[].class);
+        StationImportDto[] stations = gson.fromJson(stationsJson, StationImportDto[].class);
 
         Arrays.stream(stations)
                 .forEach(station -> {
-                    Station currentStation = new Station(station.getName(), station.getAveragePower());
-                    data.putIfAbsent(station.getName(), new ArrayList<>());
-                    data.get(station.getName()).add(currentStation);
+                    Station currentStation = new Station(station.getStationName(), station.getPower());
+                    data.putIfAbsent(station.getStationName(), new ArrayList<>());
+                    data.get(station.getStationName()).add(currentStation);
                 });
 
         return String.format("%d stations, successfully added.", stations.length);
     }
 
     @Override
-    public List<Station> getAveragePower() {
-        return null;
+    public List<StationExportDto> getAveragePower() {
+        List<StationExportDto> stationsAverage = new ArrayList<>();
+
+        data.forEach((key, value) -> {
+            double average = value.stream()
+                    .mapToDouble(Station::getAveragePower)
+                    .average()
+                    .orElse(0.0);
+
+            StationExportDto stationDto = new StationExportDto(key, average);
+
+            stationsAverage.add(stationDto);
+        });
+
+        return stationsAverage;
     }
 }

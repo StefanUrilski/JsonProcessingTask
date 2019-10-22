@@ -1,6 +1,6 @@
 package repository;
 
-import entity.Station;
+import dto.StationExportDto;
 
 import java.util.List;
 
@@ -8,6 +8,6 @@ public interface StationRepository {
 
     String addStationsFromJson(String stationsJson);
 
-    List<Station> getAveragePower();
+    List<StationExportDto> getAveragePower();
 
 }
